@@ -28,4 +28,4 @@ model.fit(x_train, y_train, epochs=3, validation_data=(x_test, y_test))
 
 # Simpan model
 model.save("optimized_cnn_model.keras")
-print("✅ Model sudah disimpan sebagai optimized_cnn_model.keras")
+print("Model sudah disimpan sebagai optimized_cnn_model.keras")
