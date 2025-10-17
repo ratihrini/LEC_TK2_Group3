@@ -3,33 +3,42 @@ from PIL import Image
 import streamlit as st
 from predict_util import load_model, predict_image, CLASS_NAMES
 
+# Konfigurasi halaman
 st.set_page_config(page_title="CIFAR10 Classifier", layout="centered")
 
+# Load model hanya sekali (cache)
 @st.cache_resource
 def _load_model():
-    # try .keras first then .h5
     return load_model()
 
 model = _load_model()
 
+# Judul aplikasi
 st.title("CIFAR10 Image Classifier")
 st.caption("Upload any image. The app resizes to 32x32 like training and predicts the class.")
 
-file = st.file_uploader("Upload image", type=["jpg","jpeg","png"])
-if file:
-    img = Image.open(io.BytesIO(file.read())).convert("RGB")
-    st.image(img, caption="Input", use_container_width=True)
+# Upload gambar
+file = st.file_uploader("Upload image", type=["jpg", "jpeg", "png"])
 
+if file:
+    # Buka gambar
+    img = Image.open(io.BytesIO(file.read())).convert("RGB")
+    
+    # Tampilkan gambar dengan ukuran lebih kecil
+    st.image(img, caption="Input", width=250)  # atur ukuran di sini
+
+    # Prediksi top 3 kelas
     topk, probs = predict_image(model, img, top_k=3)
 
     st.subheader("Top 3 predictions")
     for name, p in topk:
         st.write(f"{name} {p:.4f}")
 
+    # Tampilkan semua probabilitas dalam bentuk bar chart
     st.subheader("All classes")
     st.bar_chart({k: v for k, v in zip(CLASS_NAMES, probs)})
 
-    # 7. Evaluasi sederhana dengan label asli (muncul setelah upload gambar)
+    # Evaluasi manual (opsional)
     st.subheader("Evaluation (optional)")
     true_label = st.text_input("Masukkan label asli (opsional):")
     if true_label:
