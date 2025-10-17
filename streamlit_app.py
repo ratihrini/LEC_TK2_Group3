@@ -31,7 +31,7 @@ if file:
 
 # 7. Evaluasi sederhana dengan label asli (versi Streamlit)
 st.subheader("Evaluation (optional)")
-true_label = st.text_input("True label optional", [""] + CLASS_NAMES)
+true_label = st.text_input("True label optional")
 if true_label:
     result_text = "BENAR" if true_label.lower() == topk[0][0].lower() else "SALAH"
     st.write(f"{result_text} ({topk[0][0]} vs {true_label})")
