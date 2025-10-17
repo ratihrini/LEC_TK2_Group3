@@ -29,10 +29,9 @@ if file:
     st.subheader("All classes")
     st.bar_chart({k: v for k, v in zip(CLASS_NAMES, probs)})
 
-# 7. Evaluasi sederhana dengan label asli (versi Streamlit)
-st.subheader("Evaluation (optional)")
-true_label = st.text_input("True label optional")
-if true_label:
-    result_text = "BENAR" if true_label.lower() == topk[0][0].lower() else "SALAH"
-    st.write(f"{result_text} ({topk[0][0]} vs {true_label})")
-
+    # 7. Evaluasi sederhana dengan label asli (muncul setelah upload gambar)
+    st.subheader("Evaluation (optional)")
+    true_label = st.text_input("Masukkan label asli (opsional):")
+    if true_label:
+        result_text = "BENAR" if true_label.lower() == topk[0][0].lower() else "SALAH"
+        st.write(f"{result_text} ({topk[0][0]} vs {true_label})")
