@@ -28,3 +28,26 @@ if file:
 
     st.subheader("All classes")
     st.bar_chart({k: v for k, v in zip(CLASS_NAMES, probs)})
+
+# 7. Evaluasi sederhana dengan label asli (versi Streamlit)
+pred_label = topk[0][0]
+true_label = st.text_input("Masukkan label asli (opsional):", "")
+
+if true_label:
+    if true_label.lower() == pred_label.lower():
+        result_text = f"BENAR ({pred_label} vs {true_label})"
+        st.success(result_text)
+    else:
+        result_text = f"SALAH ({pred_label} vs {true_label})"
+        st.error(result_text)
+
+    # tampilkan hasil evaluasi dalam gambar berukuran 4x4
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots(figsize=(4, 4))
+    ax.text(0.5, 0.5, result_text, fontsize=16, ha="center", va="center")
+    ax.axis("off")
+    ax.set_title("Hasil Evaluasi")
+    st.pyplot(fig)
+else:
+    st.info("Tidak ada label asli dimasukkan. Evaluasi dilewati.")
+
