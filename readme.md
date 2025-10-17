@@ -9,7 +9,7 @@ It expects a model file in the project root named `optimized_cnn_model.keras` or
 3. Hella Dwi Pratiwi			      (2802519650) 
 4. Ahmad Fauzi				          (2802556955) 
 5. Luqman Aulia Gani			      (2802518780)
-6. 
+   
 ## Local run
 1. Put your model file next to `app.py`.
 2. `pip install -r requirements.txt`
