@@ -13,3 +13,10 @@ If your training ran in Colab and produced `optimized_cnn_model.keras`:
 ```python
 from google.colab import files
 files.download("optimized_cnn_model.keras")
+
+Kelompok 3 kelas JPCA
+Muhammad Ghoni Khidir Tohir	(2802518591) 
+Ratih Octavia Rini			    (2802552074) 
+Hella Dwi Pratiwi			      (2802519650) 
+Ahmad Fauzi				          (2802556955) 
+Luqman Aulia Gani			      (2802518780) 
