@@ -8,6 +8,11 @@ import predict_util as pu
 # Halaman
 st.set_page_config(page_title="CIFAR10 Classifier with Unknown Detection", layout="centered")
 
+if st.sidebar.button("Clear cache"):
+    st.cache_data.clear()
+    st.cache_resource.clear()
+    st.rerun()
+
 # Muat model sekali saja
 @st.cache_resource
 def _load_model():
