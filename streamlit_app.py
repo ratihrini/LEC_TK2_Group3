@@ -30,15 +30,9 @@ if file:
     st.bar_chart({k: v for k, v in zip(CLASS_NAMES, probs)})
 
 # 7. Evaluasi sederhana dengan label asli (versi Streamlit)
-    st.subheader("Evaluation optional")
-    true_label = st.text_input("True label like dog or ship", "")
+st.subheader("Evaluation (optional)")
+    true_label = st.selectbox("True label optional", [""] + CLASS_NAMES)
     if true_label:
-        result_text = "BENAR" if true_label.lower() == pred_label.lower() else "SALAH"
-        st.write(f"{result_text} ({pred_label} vs {true_label})")
-
-        fig, ax = plt.subplots(figsize=(4, 4))
-        ax.text(0.5, 0.5, f"{result_text}\n({pred_label} vs {true_label})",
-                ha="center", va="center", fontsize=16)
-        ax.axis("off")
-        st.pyplot(fig)
+        result_text = "BENAR" if true_label.lower() == topk[0][0].lower() else "SALAH"
+        st.write(f"{result_text} ({topk[0][0]} vs {true_label})")
 
